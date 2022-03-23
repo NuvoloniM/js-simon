@@ -31,7 +31,7 @@ function play() {
         if(!numbers.includes(num)){
             numbers.push(num);
             //stampa a video l'array
-            extracted.innerHTML += ` ${num} `;
+            extracted.innerHTML += `<div class="card"> ${num}</div> `;
         }
     }
 
@@ -42,7 +42,7 @@ function play() {
     //funzione domanda, chiede per tot volte e pusha nell'array
     function resolve() {
         //cancella i numeri a video
-        extracted.innerHTML = `x x x x x`
+        extracted.innerHTML = ``;
         //chiedi fino a 5
         while (userNumb.length < 5) {
             y = parseInt(prompt('Inserisci un numero che ti ricordi'));
@@ -68,11 +68,11 @@ function play() {
             if (rightArray.length == numbers.length) {
                 alert('HAI VINTO!! Congratulazioni, ottima memoria!')
                 //stampa a video i numeri indovinati 
-                end.innerHTML = `I numeri indovinati sono ${rightArray}`
+                end.innerHTML = `I numeri indovinati sono <div class="card card-right">${rightArray}</div>`
             } else {
-                //stampa a video quanti numeri e quali hai
+                //stampa a video quanti numeri e quali hai indovinato
                 alert('Accidenti! Non hai indovinato tutti i numeri!')
-                end.innerHTML = `Hai indovinato ${counter} numeri. I numeri indovinati sono ${rightArray}`
+                end.innerHTML = `Hai indovinato ${counter} numeri. I numeri indovinati sono <div class = "card card-wrong">${rightArray}</div>`
             }
         }
     }
