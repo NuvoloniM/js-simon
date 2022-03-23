@@ -12,6 +12,7 @@ Consigli del giorno:
 */
 
 let btn = document.getElementById('btn');
+let extracted = document.getElementById('extracted');
 
 btn.addEventListener('click',play);
 
@@ -28,10 +29,25 @@ function play() {
         //se non c'è gia -> pusha nell'array (così da evitare ripetizioni)
         if(!numbers.includes(num)){
             numbers.push(num);
+            extracted.innerHTML += ` ${num} `;
         }
     }
 
+    const userNumb = [];
+    //creo timer, una volta finito parte la funzione.
+    setTimeout(question(5),3000);
+
+    //funzione domanda
+    function question(x) {
+        while (userNumb.length < x) {
+            y = parseInt(prompt('Inserisci un numero che ti ricordi'));
+            userNumb.push(y);
+        }
+    }
+  
+
     console.log(numbers);
+    console.log(userNumb);
 }
 
 
@@ -44,8 +60,3 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
 }
 
-//funzione domanda
-function question(x) {
-    return x = parseInt(prompt('Inserisci qui un numero tra quelli che hai visto'));
-}
-  
