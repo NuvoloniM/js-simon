@@ -37,42 +37,36 @@ function play() {
     //inizializzo l'elenco dei numeri
     const userNumb = [];
     //creo timer, una volta finito parte la funzione.
-    setTimeout(question(5),3000);
-
+    setTimeout(resolve, 30000);
     //funzione domanda, chiede per tot volte e pusha nell'array
-    function question(x) {
-        while (userNumb.length < x) {
+    function resolve() {
+        extracted.innerHTML = `x x x x x`
+        while (userNumb.length < 5) {
             y = parseInt(prompt('Inserisci un numero che ti ricordi'));
             userNumb.push(y);
         }
-    }
 
-    let rightArray = [];
-    let counter = 0;
-    for (let i = 0; i < numbers.length; i++) {
-        if (numbers.includes(userNumb[i])) {
-            counter += 1;
-            rightArray.push(userNumb[i]);
+        let rightArray = [];
+        let counter = 0;
+            for (let i = 0; i < numbers.length; i++) {
+            if (numbers.includes(userNumb[i])) {
+                counter += 1;
+                rightArray.push(userNumb[i]);
+            }
+        }
+
+        endGame();
+        function endGame() {
+            if (rightArray.length == 5) {
+                alert('HAI VINTO!! Congratulazioni, ottima memoria!')
+                end.innerHTML = `I numeri indovinati sono ${rightArray}`
+            } else {
+                alert('Accidenti! Non hai indovinato tutti i numeri!')
+                end.innerHTML = `Hai indovinato ${counter} numeri. I numeri indovinati sono ${rightArray}`
+            }
         }
     }
-
-    endGame();
-
-    function endGame() {
-        if (rightArray.length == 5) {
-            alert('HAI VINTO!! Congratulazioni, ottima memoria!')
-            end.innerHTML = `I numeri indovinati sono ${rightArray}`
-        } else {
-            alert('Accidenti! Non hai indovinato tutti i numeri!')
-            end.innerHTML = `Hai indovinato ${counter} numeri. I numeri indovinati sono ${rightArray}`
-        }
-    }
-
-
     console.log(numbers);
-    console.log(userNumb);
-    console.log(counter);
-    console.log(rightArray);
 }
 
 
