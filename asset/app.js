@@ -20,16 +20,17 @@ btn.addEventListener('click',play);
 function play() {
     console.log("game started...");
     //svuota la pagina da numeri precedenti
-    //da inserire
+    extracted.innerHTML = '';
     //inizializzo array di numeri estratti
     const numbers = [];
     //estraggo fino a quando non ho 5 numeri diversi da inserire nell'array
     while (numbers.length < 5) {
-        //pesco un numero random usando la funzione
+        //pesco un numero random usando la funzione 
         const num = getRandomIntInclusive(1,100);
         //se non c'è gia -> pusha nell'array (così da evitare ripetizioni)
         if(!numbers.includes(num)){
             numbers.push(num);
+            //stampa a video l'array
             extracted.innerHTML += ` ${num} `;
         }
     }
@@ -40,27 +41,36 @@ function play() {
     setTimeout(resolve, 30000);
     //funzione domanda, chiede per tot volte e pusha nell'array
     function resolve() {
+        //cancella i numeri a video
         extracted.innerHTML = `x x x x x`
+        //chiedi fino a 5
         while (userNumb.length < 5) {
             y = parseInt(prompt('Inserisci un numero che ti ricordi'));
             userNumb.push(y);
         }
-
+        //inizializzo array di risposte giuste
         let rightArray = [];
+        //inizializzo conteggio numeri giusti
         let counter = 0;
+            //controlla se il numero scritto è nell'array di numeri estratti 
             for (let i = 0; i < numbers.length; i++) {
+            //se c'è somma 1 al counter e pusha il numero nell'array risposte giuste 
             if (numbers.includes(userNumb[i])) {
                 counter += 1;
                 rightArray.push(userNumb[i]);
             }
         }
-
+        //richiamo la funzione: fine del gioco
         endGame();
+        //creo funzione fine gioco
         function endGame() {
-            if (rightArray.length == 5) {
+            //se la lunghezza dell'array "risposte giuste" è = a lunghezza numeri estratti hai vinto  
+            if (rightArray.length == numbers.length) {
                 alert('HAI VINTO!! Congratulazioni, ottima memoria!')
+                //stampa a video i numeri indovinati 
                 end.innerHTML = `I numeri indovinati sono ${rightArray}`
             } else {
+                //stampa a video quanti numeri e quali hai indovinato
                 alert('Accidenti! Non hai indovinato tutti i numeri!')
                 end.innerHTML = `Hai indovinato ${counter} numeri. I numeri indovinati sono ${rightArray}`
             }
