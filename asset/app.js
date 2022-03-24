@@ -50,7 +50,7 @@ function play() {
         //chiedi fino a 5
         while (userNumb.length < 5) {
             y = parseInt(prompt('Inserisci un numero che ti ricordi'));
-            if (!userNumb.includes(y) || isNaN(y) == true) {
+            if (userNumb.includes(y) || isNaN(y) == true) {
                 alert('Attenzione. Numero già inserito o non valido!')
             } else {
                 userNumb.push(y);
