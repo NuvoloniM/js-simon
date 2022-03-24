@@ -37,16 +37,21 @@ function play() {
 
     //inizializzo l'elenco dei numeri
     const userNumb = [];
+    //visto che su chrome parte il prompt prima di nascondere, creo un timer solo per nascondere
+    setTimeout(hide, 30000);
     //creo timer, una volta finito parte la funzione.
-    setTimeout(resolve, 30000);
+    setTimeout(resolve, 31000);
+    //creo una funzione per nascondere i numeri estratti
+    function hide() {
+    //cancella i numeri a video
+    extracted.innerHTML = ``;
+    }
     //funzione domanda, chiede per tot volte e pusha nell'array
     function resolve() {
-        //cancella i numeri a video
-        extracted.innerHTML = ``;
         //chiedi fino a 5
         while (userNumb.length < 5) {
             y = parseInt(prompt('Inserisci un numero che ti ricordi'));
-            if (!userNumb.includes(y) || isNaN(y) == true) {
+            if (userNumb.includes(y) || isNaN(y) == true) {
                 alert('Attenzione. Numero già inserito o non valido!')
             } else {
                 userNumb.push(y);
